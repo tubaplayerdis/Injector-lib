@@ -61,7 +61,7 @@ int DLLIsLoaded(const wchar_t* dll_name, const wchar_t* process_name)
 
 ## `EjectDLL`
 
-Ejects a dll form a process.
+Ejects a dll from a process.
 
 ### Declaration
 
