@@ -35,8 +35,17 @@ unsigned long find_process_id(const wchar_t* processName)
     return 0;
 }
 
-__declspec(dllexport) bool EjectDLL(const DWORD process_id, const wchar_t* dll_name)
+/*
+ * Returns:
+ * 0 - Ejected DLL
+ * 1 - Failed to Eject DLL
+ * 2 - Process Not Found
+ */
+__declspec(dllexport) int EjectDLL(const wchar_t* dll_name, const wchar_t* process_name)
 {
+    const unsigned long process_id = find_process_id(process_name);
+    if (process_id == 0) return 2;
+
     const HANDLE h_snap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, process_id);
     if (h_snap == INVALID_HANDLE_VALUE) return FALSE;
 
