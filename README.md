@@ -41,7 +41,7 @@ Checks to see if a dll is already loaded
 ### Defenition
 
 ```c
-int DLLIsLoaded(const wchar_t* dll_name, const wchar_t* process_name)
+int DllIsLoaded(const wchar_t* dll_name, const wchar_t* process_name)
 ```
 
 ### Parameters
@@ -66,7 +66,7 @@ Ejects a dll from a process.
 ### Declaration
 
 ```c
-int EjectDLL(const wchar_t* dll_name const wchar_t* process_name)
+int EjectDll(const wchar_t* dll_name const wchar_t* process_name)
 ```
 
 ### Parameters
