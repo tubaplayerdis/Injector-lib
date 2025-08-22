@@ -41,7 +41,7 @@ unsigned long find_process_id(const wchar_t* processName)
  * 1 - Failed to Eject DLL
  * 2 - Process Not Found
  */
-__declspec(dllexport) int EjectDLL(const wchar_t* dll_name, const wchar_t* process_name)
+__declspec(dllexport) int EjectDll(const wchar_t* dll_name, const wchar_t* process_name)
 {
     const unsigned long process_id = find_process_id(process_name);
     if (process_id == 0) return 2;
@@ -94,7 +94,7 @@ __declspec(dllexport) int EjectDLL(const wchar_t* dll_name, const wchar_t* proce
  * 2 - Process Not Found
  * 3 - Process Cant Open
  */
-__declspec(dllexport) int DLLIsLoaded(const wchar_t* dll_name, const wchar_t* process_name)
+__declspec(dllexport) int DllIsLoaded(const wchar_t* dll_name, const wchar_t* process_name)
 {
     const unsigned long process_id = find_process_id(process_name);
     if (process_id == 0) return 2;
@@ -169,7 +169,7 @@ __declspec(dllexport) int InjectDll(const wchar_t* dll_path_name, const wchar_t*
         return RETURN_PROCESS_OPENING_FAILURE;
     }
 
-    if (DLLIsLoaded(PathFindFileNameW(dll_path_name), process_name) > 1)
+    if (DllIsLoaded(PathFindFileNameW(dll_path_name), process_name) > 1)
     {
         CloseHandle(h_process);
         return RETURN_DLL_ALREADY_LOADED;
@@ -189,7 +189,7 @@ __declspec(dllexport) int InjectDll(const wchar_t* dll_path_name, const wchar_t*
     }
 
     HMODULE hKernel32 = GetModuleHandleA("kernel32.dll");
-    LPVOID loadLib = (LPVOID)GetProcAddress(hKernel32, "LoadLibraryA");
+    LPVOID loadLib = (LPVOID)GetProcAddress(hKernel32, "LoadLibraryW");
 
     if (hKernel32 == NULL || loadLib == NULL)
     {
